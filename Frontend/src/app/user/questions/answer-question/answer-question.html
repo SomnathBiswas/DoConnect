@@ -1,0 +1,82 @@
+<!-- Answer Question Page -->
+<div class="page-wrap">
+  <header class="header-small">
+    <div class="logo">● DoConnect</div>
+    <nav class="nav-mini">
+      <a routerLink="/">Home</a>
+      <a routerLink="/user/dashboard">Dashboard</a>
+    </nav>
+  </header>
+
+  <section class="container two-col">
+    <!-- Left: searchable list of approved question titles -->
+    <aside class="left-col">
+      <div class="search">
+        <input
+          type="text"
+          [(ngModel)]="search"
+          (input)="onSearchChange()"
+          placeholder="Search questions..."
+        />
+      </div>
+
+      <ul class="question-list">
+        <li *ngFor="let q of filtered" (click)="selectQuestion(q)"
+            [class.active]="selected?.questionId === q.questionId">
+          <div class="title">{{ q.questionTitle }}</div>
+          <div class="meta">{{ q.username }} · {{ q.createdAt | date:'short' }}</div>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Right: details + answer form -->
+    <main class="right-col" *ngIf="selected; else empty">
+      <article class="question-card">
+        <h2>{{ selected.questionTitle }}</h2>
+        <p class="meta">Posted by {{ selected.username }} · {{ selected.createdAt | date:'short' }}</p>
+        <div class="body">{{ selected.questionText }}</div>
+
+        <div class="images" *ngIf="selected.imagePaths?.length">
+          <div class="img" *ngFor="let p of selected.imagePaths">
+            <img [src]="getImageUrl(p)" alt="question image" loading="lazy" />
+          </div>
+        </div>
+
+      </article>
+
+      <section class="answer-area">
+        <h3>Your Answer</h3>
+
+        <textarea rows="6" [(ngModel)]="answerText" placeholder="Write your answer..."></textarea>
+
+        <div class="file-upload">
+          <label for="answerImage" class="visually-hidden">Upload image</label>
+          <input id="answerImage" type="file" accept="image/*" (change)="onFileChange($event)" />
+          <div class="preview" *ngIf="previewUrl">
+            <img [src]="previewUrl" alt="preview" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Submitting…' : 'Submit Answer' }}
+          </button>
+        </div>
+
+        <div class="message" *ngIf="message">
+          {{ message }}
+        </div>
+      </section>
+    </main>
+
+    <ng-template #empty>
+      <main class="right-col empty">
+        <p>Select a question from the left to view details and submit an answer.</p>
+      </main>
+    </ng-template>
+  </section>
+
+  <footer class="footer-small">
+    <p>© 2025 DoConnect. All rights reserved.</p>
+  </footer>
+</div>

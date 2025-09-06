@@ -1,0 +1,53 @@
+<header class="header">
+  <div class="logo">● DoConnect</div>
+  <nav class="nav-links">
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a (click)="logout()" class="btn btn-outline">Logout</a>
+  </nav>
+</header>
+
+<section class="page">
+  <h1>Approve / Reject Answers</h1>
+
+  <div class="toolbar">
+    
+    <select title="Filter by status"  [(ngModel)]="filterStatus" (change)="filter()">
+      <option value="Pending">Pending</option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+      <option value="All">All</option>
+    </select>
+    
+  </div>
+
+  <div class="list">
+    <div class="card" *ngFor="let a of filtered">
+      <div class="card-header">
+        <div class="chip" [ngClass]="a.status.toLowerCase()">{{ a.status }}</div>
+        <div class="meta">
+          <span>By <strong>{{ a.username }}</strong></span>
+          <span>•</span>
+          <span>{{ a.createdAt | date:'medium' }}</span>
+        </div>
+      </div>
+
+      <h4 class="qtitle">Q: {{ a.questionTitle }}</h4>
+      <p class="text">{{ a.answerText }}</p>
+
+      <div class="images" *ngIf="a.imagePaths?.length">
+        <img *ngFor="let img of a.imagePaths"  [src]="getImageUrl(img)" alt="" />
+      </div>
+
+      <div class="actions">
+        <ng-container *ngIf="a.status === 'Pending'">
+          <button class="btn btn-pill" (click)="approve(a.answerId)">Approve</button>
+          <button class="btn btn-pill btn-danger" (click)="reject(a.answerId)">Reject</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2025 DoConnect. Admin Panel</p>
+</footer>

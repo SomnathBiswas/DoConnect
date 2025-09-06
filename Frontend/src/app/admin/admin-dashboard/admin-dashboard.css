@@ -1,0 +1,207 @@
+/* --- Base layout (sticky footer, no extra scroll) --- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  color: #111;
+  min-height: 100dvh;            /* viewport height with mobile address-bar awareness */
+  display: flex;
+  flex-direction: column;        /* header -> main -> footer */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 10;
+}
+.logo { font-weight: 700; font-family: Georgia, serif; font-size: 18px; }
+.nav-links { display:flex; align-items:center; gap:12px; }
+.nav-links a { margin-left: 8px; text-decoration: none; color: #1f2937; }
+
+/* Notification wrapper inside header (keeps everything consistent) */
+.notif-wrap { position: relative; display: inline-flex; align-items:center; }
+.bell-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  position: relative;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items:center;
+  gap:6px;
+  color: #1f2937;
+}
+.bell-icon { font-size: 18px; line-height:1; }
+
+/* small red badge */
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #d9534f;
+  color: white;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Notification dropdown */
+.notif-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 360px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.12);
+  z-index: 1200;
+  padding: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.nd-header {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f2f4f6;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.nd-header strong { font-size: 14px; }
+.nd-list { max-height: 280px; overflow:auto; padding:6px 0; }
+.nd-item {
+  display:flex;
+  gap:10px;
+  padding:10px;
+  cursor:pointer;
+  border-radius: 6px;
+  transition: background .12s;
+  align-items:flex-start;
+}
+.nd-item + .nd-item { margin-top: 4px; }
+.nd-item:hover { background: #fbfbfb; }
+.nd-left {
+  width: 56px;
+  flex-shrink: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f4f6;
+  border-radius: 6px;
+  height:48px;
+}
+.nd-type { font-weight:700; font-size:12px; color:#374151; text-align:center; padding:6px; }
+.nd-right { flex: 1 1 auto; min-width: 0; }
+.nd-title { font-weight:600; font-size: 13px; color: #111827; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.nd-meta { font-size: 12px; color: #6b7280; }
+.nd-empty { padding: 18px; text-align:center; color:#6b7280; }
+.nd-footer { padding: 8px; border-top: 1px solid #f2f4f6; text-align:center; }
+.nd-footer a { text-decoration:none; color:#111827; font-weight:600; }
+
+/* Footer sticks to bottom when content is short */
+.footer {
+  flex: 0 0 auto;
+  margin-top: 95px;              /* push footer to bottom */
+  text-align: center;
+  padding: 12px 16px;
+  background: #fafafa;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Center the card without adding page height */
+.page {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;           /* perfectly center content */
+  padding: 24px;
+  min-height: 0;                 /* prevent overflow calculations */
+}
+
+/* --- Admin Card (perfect square, responsive) --- */
+.admin-card {
+  width: min(440px, 90vmin);     /* responsive: never larger than 440px, scales with viewport */
+  aspect-ratio: 1 / 1;           /* make it square */
+  margin: 0;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.04);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;       /* center content vertically */
+  align-items: center;           /* center content horizontally */
+  gap: 16px;
+}
+
+.admin-card h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 3.2vmin, 28px);
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: .2s all ease;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid #d3d6da;
+  color: #111;
+}
+.btn-outline:hover { background: #f3f4f6; }
+
+.btn-pill {
+  background: #d1d5db;
+  color: #111;
+  border: 1px solid #cfd3d7;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-align: center;
+}
+.btn-pill:hover { background: #cbd2d9; }
+
+/* Arrange action buttons in a neat grid */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 side-by-side */
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Small screens: stack buttons */
+@media (max-width: 420px) {
+  .btn-grid { grid-template-columns: 1fr; }
+  .notif-dropdown { right: 8px; left: 8px; width: auto; }
+}

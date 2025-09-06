@@ -1,0 +1,147 @@
+/* Reuse base styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.logo {
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+}
+.nav-links a {
+  margin-left: 14px;
+  text-decoration: none;
+  color: #111;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn-outline {
+  background: #fff;
+  border: 1px solid #d3d6da;
+  color: #111;
+}
+.btn-outline:hover {
+  background: #f3f4f6;
+}
+.btn-pill {
+  background: #d1d5db;
+  border: 1px solid #cfd3d7;
+  color: #111;
+  border-radius: 12px;
+}
+.btn-pill:hover {
+  background: #c9cfd6;
+}
+.btn-danger {
+  background: #f0d4d4;
+  border: 1px solid #e2b8b8;
+  color: #7a1d1d;
+}
+
+.page {
+  max-width: 1000px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+.page h1 {
+  font-family: 'Georgia', serif;
+  margin: 0 0 16px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.toolbar input,
+.toolbar select {
+  border: 1px solid #d3d6da;
+  border-radius: 8px;
+  padding: 8px 10px;
+  outline: none;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.meta {
+  color: #6b7280;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+}
+.chip {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid #d3d6da;
+}
+.chip.pending {
+  background: #fff8d8;
+}
+.chip.approved {
+  background: #dbf2d9;
+  border-color: #bfe6bb;
+}
+.chip.rejected {
+  background: #f7d9db;
+  border-color: #e9b0b5;
+}
+
+.qtitle {
+  margin: 6px 0 6px;
+  font-weight: 600;
+}
+.text {
+  color: #374151;
+  margin: 0 0 8px;
+}
+
+.images {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+}
+.images img {
+  width: 86px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.footer {
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  color: #6b7280;
+  text-align: center ;
+}

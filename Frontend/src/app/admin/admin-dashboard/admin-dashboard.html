@@ -1,0 +1,68 @@
+<!-- Header -->
+<header class="header">
+  <div class="logo">● DoConnect</div>
+
+  <nav class="nav-links">
+    <!-- Notification bell -->
+    <div class="notif-wrap" (click)="toggleDropdown($event)">
+      <button class="bell-btn" title="Notifications">
+        <span class="bell-icon">🔔</span>
+        <span class="badge" *ngIf="pendingCount > 0">{{ pendingCount }}</span>
+      </button>
+
+      <div class="notif-dropdown" *ngIf="dropdownOpen">
+        <div class="nd-header">
+          <strong>Pending Items</strong>
+          <small *ngIf="loading"> · Loading…</small>
+        </div>
+
+        <div class="nd-list">
+          <div *ngIf="!loading && !recent?.length" class="nd-empty">No pending items</div>
+
+          <ul *ngIf="recent?.length">
+            <li *ngFor="let n of recent" (click)="openNotification(n)" class="nd-item">
+              <div class="nd-left">
+                <div class="nd-type">{{ n.type }}</div>
+              </div>
+              <div class="nd-right">
+                <div class="nd-title">{{ n.title }}</div>
+                <div class="nd-meta">by {{ n.username }} • {{ n.createdAt | date:'short' }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nd-footer">
+          <a routerLink="/admin/approval/questions" (click)="$event.stopPropagation()">Go to approvals</a>
+        </div>
+      </div>
+    </div>
+
+    <a (click)="logout()" class="btn btn-outline">Logout</a>
+  </nav>
+</header>
+
+<!-- Page content -->
+<main class="page">
+  <section class="admin-card">
+    <h1>Admin Dashboard</h1>
+    <p class="subtitle">Manage questions, answers and content approvals</p>
+
+    <div class="btn-grid">
+      <a routerLink="/admin/approval/questions" class="btn btn-pill">
+        Approve / Reject Questions
+      </a>
+      <a routerLink="/admin/approval/answers" class="btn btn-pill">
+        Approve / Reject Answers
+      </a>
+      <a routerLink="/admin/approval/manage" class="btn btn-pill">
+        Manage Content
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2025 DoConnect. Admin Panel</p>
+</footer>

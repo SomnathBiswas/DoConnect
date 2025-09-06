@@ -1,0 +1,45 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">● DoConnect</div>
+  <div class="nav-links">
+    <a routerLink="/">Home</a>
+    <a *ngIf="!isLoggedIn" routerLink="/user/auth/login" class="btn btn-outline">Login</a>
+    <a *ngIf="!isLoggedIn" routerLink="/user/auth/register" class="btn btn-primary">Register</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="btn btn-outline">Logout</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Ask. Learn. Share. Together on DoConnect.</h1>
+  <p>
+    DoConnect is a Q&A platform where developers and technologists ask and answer questions
+    across a wide range of technical topics. Join the community to get help,
+    contribute knowledge, and grow your expertise.
+  </p>
+  <div class="hero-buttons">
+    <a *ngIf="!isLoggedIn" routerLink="/user/auth/register" class="btn btn-primary">Get Started</a>
+    <a *ngIf="isLoggedIn" routerLink="/user/questions" class="btn btn-outline">Browse Questions</a>
+  </div>
+</section>
+
+<!-- Why Section -->
+<section class="features">
+  <div class="feature-card">
+    <h3>Focused technical Q&A</h3>
+    <p>From fundamentals to advanced topics—ask precise questions and get high-quality answers.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Community-driven</h3>
+    <p>Upvotes, accepted answers, and badges reward helpful contributions and expertise.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Searchable knowledge</h3>
+    <p>Find solutions fast with powerful search and well-organized tags across languages and frameworks.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 DoConnect. All rights reserved.</p>
+</footer>

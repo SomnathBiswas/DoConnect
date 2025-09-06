@@ -1,0 +1,117 @@
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: #d1d5db;   
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+.btn-outline {
+  border: 1px solid #d3d6da;
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: white;
+  color: black;
+  font-weight: 600;   /* Bolder text */
+  transition: 0.2s;
+}
+
+.btn-outline:hover {
+  background: #f3f4f6;
+}
+
+/* Filled button */
+.btn-filled {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: #d3d6da;
+  color: black;
+  font-weight: 600;   /* Bolder text */
+  transition: 0.2s;
+}
+
+.btn-filled:hover {
+  background: #c0c3c7;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.hero-buttons a {
+  margin: 0 10px;
+}
+
+/* Features */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1 1 250px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fafafa;
+  color: #555;
+  font-size: 14px;
+  position: relative;
+  bottom: auto;
+  width: 100%;
+  margin-top: 40px;
+}

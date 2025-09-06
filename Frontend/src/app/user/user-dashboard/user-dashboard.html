@@ -1,0 +1,33 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">● DoConnect</div>
+  <div class="nav-links">
+    <a routerLink="/">Home</a>
+    <a routerLink="/user/questions" class="btn btn-outline">Questions</a>
+    <a (click)="logout()" class="btn btn-primary">Logout</a>
+  </div>
+</nav>
+
+<section class="wrap">
+  <div class="card">
+    <h1>User Dashboard</h1>
+    <p class="subtitle">Welcome User!</p>
+
+    <div class="grid">
+      <a class="card-action" routerLink="/user/questions/ask">
+        <div class="title">Ask a Question?</div>
+        <div class="desc">Post a new question. You can attach images.</div>
+      </a>
+
+      <a class="card-action" routerLink="/user/questions/answer/:id">
+        <div class="title">Answer Questions</div>
+        <div class="desc">Open a question and submit your answer (after approval rules).</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 DoConnect. All rights reserved.</p>
+</footer>

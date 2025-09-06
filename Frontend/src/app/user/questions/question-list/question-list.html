@@ -1,0 +1,88 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">● DoConnect</div>
+  <div class="nav-links">
+    <a routerLink="/">Home</a>
+    <a routerLink="/user/dashboard" class="btn btn-outline">Dashboard</a>
+  </div>
+</nav>
+
+<section class="questions-wrap">
+  <div class="left-panel">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search questions..."
+        [(ngModel)]="search"
+        (input)="onSearchChange()"
+        aria-label="Search questions"
+      />
+    </div>
+
+    <ul class="question-list" role="list">
+      <li
+        *ngFor="let q of filteredQuestions"
+        (click)="selectQuestion(q)"
+        [class.active]="selected?.questionId === q.questionId"
+        role="listitem"
+        tabindex="0"
+        (keydown.enter)="selectQuestion(q)"
+      >
+        <div class="q-title">{{ q.questionTitle }}</div>
+        <div class="q-meta">{{ q.username }} · {{ q.createdAt | date:'short' }}</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-panel" *ngIf="selected; else noSelect">
+    <article class="question-card">
+      <h1>{{ selected.questionTitle }}</h1>
+      <p class="meta">Posted by {{ selected.username }} · {{ selected.createdAt | date:'medium' }}</p>
+      <div class="body">{{ selected.questionText }}</div>
+
+      <!-- Question images -->
+      <div class="images" *ngIf="selected.imagePaths?.length">
+        <div class="img" *ngFor="let p of selected.imagePaths">
+          <a [href]="getImageUrl(p)" target="_blank" rel="noopener">
+            <img [src]="getImageUrl(p)" alt="Question image" loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <section class="answers-section">
+      <h2>Answers</h2>
+
+      <div *ngIf="approvedAnswers?.length === 0" class="no-answers">
+        No answers yet.
+      </div>
+
+      <div class="answer-card" *ngFor="let a of approvedAnswers">
+        <div class="answer-header">
+          <div class="by">By <strong>{{ a.username }}</strong></div>
+          <div class="when">{{ a.createdAt | date:'short' }}</div>
+        </div>
+        <div class="answer-body">{{ a.answerText }}</div>
+
+        <div class="images" *ngIf="a.imagePaths?.length">
+          <div class="img" *ngFor="let p of a.imagePaths">
+            <a [href]="getImageUrl(p)" target="_blank" rel="noopener">
+              <img [src]="getImageUrl(p)" alt="Answer image" loading="lazy" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <ng-template #noSelect>
+    <div class="main-panel empty">
+      <p>Select a question on the left to view details and answers.</p>
+    </div>
+  </ng-template>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 DoConnect. All rights reserved.</p>
+</footer>

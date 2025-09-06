@@ -1,0 +1,90 @@
+<header class="header">
+  <div class="logo">● DoConnect</div>
+  <nav class="nav-links">
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a (click)="logout()" class="btn btn-outline">Logout</a>
+  </nav>
+</header>
+
+<section class="page">
+  <h1>Manage Content</h1>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab" [class.active]="tab==='questions'" (click)="tab='questions'">Questions</button>
+    <button class="tab" [class.active]="tab==='answers'"   (click)="tab='answers'">Answers</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="toolbar">
+    <select title="Filter by status" [(ngModel)]="filterStatus" (change)="filter()">
+      <option value="All">All</option>
+      <option value="Approved">Approved</option>
+      <option value="Pending">Pending</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div *ngIf="tab==='questions'" class="list">
+    <div class="card" *ngFor="let q of qFiltered">
+      <div class="card-header">
+        <div class="chip" [ngClass]="q.status.toLowerCase()">{{ q.status }}</div>
+        <div class="meta">
+          <span>By <strong>{{ q.username }}</strong></span>
+          <span>•</span>
+          <span>{{ q.createdAt | date:'medium' }}</span>
+        </div>
+      </div>
+      <h3 class="title">{{ q.questionTitle }}</h3>
+      <p class="text">{{ q.questionText }}</p>
+
+      <div class="images" *ngIf="q.imagePaths?.length">
+        <!-- <img *ngFor="let p of q.imagePaths" [src]="p" alt="q-image" class="thumb" /> -->
+         <img *ngFor="let p of q.imagePaths" [src]="getFullImagePath(p)" alt="q-image" class="thumb" />
+
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-pill btn-danger" 
+                *ngIf="q.status === 'Approved'"
+                (click)="deleteQuestion(q.questionId)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANSWERS -->
+  <div *ngIf="tab==='answers'" class="list">
+    <div class="card" *ngFor="let a of aFiltered">
+      <div class="card-header">
+        <div class="chip" [ngClass]="a.status.toLowerCase()">{{ a.status }}</div>
+        <div class="meta">
+          <span>By <strong>{{ a.username }}</strong></span>
+          <span>•</span>
+          <span>{{ a.createdAt | date:'medium' }}</span>
+        </div>
+      </div>
+      <h4 class="qtitle">Q: {{ a.questionTitle }}</h4>
+      <p class="text">{{ a.answerText }}</p>
+
+      <div class="images" *ngIf="a.imagePaths?.length">
+        <!-- <img *ngFor="let p of a.imagePaths" [src]="p" alt="a-image" class="thumb" /> -->
+         <img *ngFor="let p of a.imagePaths" [src]="getFullImagePath(p)" alt="q-image" class="thumb" />
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-pill btn-danger" 
+                *ngIf="a.status === 'Approved'"
+                (click)="deleteAnswer(a.answerId)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2025 DoConnect. Admin Panel</p>
+</footer>
